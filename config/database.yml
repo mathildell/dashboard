@@ -3,8 +3,8 @@ default: &default
   adapter: postgresql
   host: localhost
   encoding: unicode
-  username: ''
-  password: ''
+  username: 'neo'
+  password: 'younglo'
   port: 5432
   pool: 5
 

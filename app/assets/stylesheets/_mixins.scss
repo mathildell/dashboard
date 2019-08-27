@@ -1,0 +1,24 @@
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin font($size: false, $style: false, $weight: false) {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  @if $size { font-size: $size; }
+  @if $weight { font-weight: $weight; }
+  @if $style { font-style: $style; }
+}
+
+@mixin media($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
