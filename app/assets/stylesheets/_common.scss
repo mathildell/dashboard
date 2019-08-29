@@ -1,0 +1,33 @@
+/* Vendor */
+@import 'vendor/_bootstrap-reboot.css';
+@import 'vendor/_bootstrap.css';
+@import 'vendor/_bootstrap-grid.css';
+
+/* Helpers */
+@import '_mixins.scss';
+@import '_vars.scss';
+
+@import 'vendor/_fontello.scss';
+@include font-face($icon-font, '../fonts/fontello/');
+
+/* Partials */
+@import 'partials/_header.scss';
+@import 'partials/_nav.scss';
+@import 'partials/_aside.scss';
+
+
+* {
+  margin: 0;
+  padding: 0;
+  //box-sizing: border-box;
+}
+
+a {
+  transition-duration: 0.3s;
+  text-decoration: none !important;
+}
+
+main.main-content {
+  margin-left: 180px;
+  margin-top: 100px;
+}

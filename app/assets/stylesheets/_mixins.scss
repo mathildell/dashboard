@@ -1,16 +1,24 @@
+// Default for pseudo elements
 @mixin pseudo($display: block, $pos: absolute, $content: ''){
   content: $content;
   display: $display;
   position: $pos;
 }
 
-@mixin font($size: false, $style: false, $weight: false) {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  @if $size { font-size: $size; }
-  @if $weight { font-weight: $weight; }
-  @if $style { font-style: $style; }
+// Define/import font for project
+@mixin font-face($name, $path) {
+  @font-face {
+    font-family: "#{$name}";
+    src: url("#{$path}#{$name}.eot");
+    src: url("#{$path}#{$name}.eot") format("embedded-opentype"),
+         url("#{$path}#{$name}.woff") format("woff"),
+         url("#{$path}#{$name}.woff2") format("woff2"),
+         url("#{$path}#{$name}.ttf") format("truetype"),
+         url("#{$path}#{$name}.svg") format("svg");
+  }
 }
 
+// Breakpoint for responsive
 @mixin media($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);

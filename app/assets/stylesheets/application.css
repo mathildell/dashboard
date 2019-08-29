@@ -1,18 +1,10 @@
 /*
- *= require_tree .
- *= require_self
+ * require_tree .
+ * require_self
  */
 
-/* Vendor */
-@import 'vendor/_bootstrap-reboot';
-@import 'vendor/_bootstrap';
-@import 'vendor/_bootstrap-grid';
 
-/* Helpers */
-@import '_mixins';
-@import '_variables';
 
-/* Partials */
-@import '_common';
-@import '_dashboard';
-@import '_expenses';
+@import '_common.scss';
+@import '_dashboard.scss';
+@import '_expenses.scss';

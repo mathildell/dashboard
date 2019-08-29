@@ -9,7 +9,15 @@
   </head>
 
   <body>
-    layout
-    <%= yield %>
+    <%= render 'partials/header' %>
+
+    <%= render 'partials/nav' %>
+
+    <main class="main-content">
+      <%= yield %>
+    </main>
+
+    <%= render 'partials/aside' %>
+
   </body>
 </html>
