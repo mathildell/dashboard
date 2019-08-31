@@ -59,3 +59,6 @@ gem 'googlecharts', '~> 1.6', '>= 1.6.12'
 
 # https://github.com/divyum/splitwise-ruby
 gem 'splitwise'
+
+# https://github.com/excid3/simple_calendar
+gem 'simple_calendar', '~> 2.0'

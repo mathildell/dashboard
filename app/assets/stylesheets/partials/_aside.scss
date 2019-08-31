@@ -1,3 +1,4 @@
+//*= require simple_calendar
 .calendar-side {
   position: fixed;
   top: 50px;
@@ -5,6 +6,110 @@
   height: calc( 100% - 50px );
   background-color: $purple;
   border-top: 1px solid #fff;
-  padding: 20px;
+  padding: 50px 20px 20px;
   width: 20%;
+  color: #fff;
+
+  .simple-calendar {
+    margin-bottom: 70px;
+    .calendar-heading {
+      text-align: left;
+      margin-bottom: 10px;
+      .calendar-title,
+      h3 {
+        margin-bottom: 0px;
+        line-height: 1;
+      }
+      h3 {
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: -5px;
+      }
+      a { font-size: 11px; color: #fff; }
+      .calendar-title {
+        font-size: 11px;
+        margin: 0 3px;
+      }
+    }
+    color: #fff;
+    .table th, .table td { padding: 0px; border: none; }
+    .table td { padding-bottom: 10px; }
+    .table thead th {
+      font-size: 12px;
+      padding-bottom: 5px;
+      color: #fff;
+    }
+    .table thead{ text-align: center; }
+    .day {
+      color: #fff;
+      text-align: center;
+      font-size: 11px;
+      position: relative;
+
+      &.has-events {
+        div {
+          position:absolute;
+          width: 7px;
+          height: 7px;
+          padding: 0;
+          overflow: hidden;
+          color: #e86ae7;
+          border-radius: 10px;
+          top: 10px;
+          left: 80%;
+          background-color: #e86ae7;
+          font-size: 8px;
+          font-weight: bold;
+          transform: translateX(-50%);
+          border: 1px solid #fff;
+          transition-duration: 0.3s;
+          &:after {
+            @include pseudo;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 3px solid #fff;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 1px;
+          }
+        }
+        &:hover {
+          cursor: pointer;
+          div {
+            padding: 0px 3px;
+            border-radius: 3px;
+            top: -16px;
+            left: 50%;
+            overflow: visible;
+            color:#fff;
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+      &.today {
+        &:after {
+          @include pseudo;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-70%);
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          border: 1px solid #fff;
+        }
+      }
+      &.past { opacity: 0.4; }
+    }
+  }
+
+  .upcoming-bills {
+    h4 {
+      margin-bottom: 0px;
+      line-height: 1;
+      font-weight: bold;
+      font-size: 15px;
+    }
+  }
+
 }

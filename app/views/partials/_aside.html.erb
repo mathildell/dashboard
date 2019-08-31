@@ -1,3 +1,17 @@
 <aside class="calendar-side">
-lcwdlk
+  <%= month_calendar events: @calendar_event do |date, event| %>
+    <%= date %>
+
+    <% event.each do |event| %>
+      <div>
+        <%= event.name %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+  <div class="upcoming-bills">
+    <h4>Upcoming bills</h4>
+
+  </div>
 </aside>
