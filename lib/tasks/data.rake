@@ -55,4 +55,38 @@ namespace :data do
     puts events.inspect
   end
 
+  #  rake data:generate_bills months=(n)
+  task generate_bills: :environment do
+    nbr_months = ENV['months'].to_i
+    last_entry_videotron = CalendarEvent.where(category: 'videotron').last.start_time
+    last_entry_spotify = CalendarEvent.where(category: 'spotify').last.start_time
+    last_entry_hydro = CalendarEvent.where(category: 'hydro').last.start_time
+    objects = []
+
+    i = 0
+    loop do
+      i += 1
+
+      next_videotron = last_entry_videotron + i.months
+      object_videotron = { name: 'Videotron', start_time: next_videotron, category: 'videotron', icon: 'icon-wifi' }
+      objects << object_videotron
+
+      next_spotify = last_entry_spotify + i.months
+      object_spotify = { name: 'Spotify', start_time: next_spotify, category: 'spotify', icon: 'icon-spotify' }
+      objects << object_spotify
+
+      next_hydro = last_entry_hydro + i.months
+      object_hydro = { name: 'HydroQuébec', start_time: next_hydro, category: 'hydro', icon: 'icon-plug' }
+      objects << object_hydro
+
+      if i == nbr_months
+        break
+      end
+    end
+
+    events = CalendarEvent.create(objects)
+
+    puts events.inspect
+  end
+
 end

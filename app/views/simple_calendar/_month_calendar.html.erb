@@ -28,11 +28,9 @@
                 <%= day.day %>
                 <% if sorted_events.fetch(day, []).present? %>
                 <% events = sorted_events.fetch(day, []) %>
-                  <div>
-                    <% events.each do |event| %>
-                      <span class="<%= event.category %> <%= event.icon %>"></span>
-                    <% end %>
-                  </div>
+                  <% events.each do |event| %>
+                  <div> <span class="<%= event.category %> <%= event.icon %>"></span> </div>
+                  <% end %>
                 <% end %>
                 <%# block.call day.day, sorted_events.fetch(day, []) %>
               <% end %>
