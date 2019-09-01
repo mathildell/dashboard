@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190831184654) do
+ActiveRecord::Schema.define(version: 20190901170905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 20190831184654) do
     t.string   "description"
     t.float    "amount"
     t.date     "date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "is_splitwise"
+    t.string   "owner"
   end
 
 end
