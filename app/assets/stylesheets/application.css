@@ -3,8 +3,6 @@
  * require_self
  */
 
-
-
 @import '_common.scss';
 @import '_dashboard.scss';
 @import '_expenses.scss';

@@ -2,7 +2,9 @@
   <div class="calendar-heading">
     <h3><%= Date.today.strftime("%A") %></h3>
     <%= link_to t('simple_calendar.previous', default: '&lt;').html_safe, calendar.url_for_previous_view %>
-    <span class="calendar-title"><%= Date.today.strftime("%B %Y") %></span>
+    <span class="calendar-title">
+      <%= t('date.month_names')[start_date.month] %> <%= start_date.year %>
+      <%# Date.today.strftime("%B %Y") %></span>
     <%= link_to t('simple_calendar.next', default: '&gt;').html_safe, calendar.url_for_next_view %>
   </div>
 
@@ -23,7 +25,16 @@
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
                 <% capture_haml(day, sorted_events.fetch(day, []), &block) %>
               <% else %>
-                <% block.call day.day, sorted_events.fetch(day, []) %>
+                <%= day.day %>
+                <% if sorted_events.fetch(day, []).present? %>
+                <% events = sorted_events.fetch(day, []) %>
+                  <div>
+                    <% events.each do |event| %>
+                      <span class="<%= event.category %> <%= event.icon %>"></span>
+                    <% end %>
+                  </div>
+                <% end %>
+                <%# block.call day.day, sorted_events.fetch(day, []) %>
               <% end %>
             <% end %>
           <% end %>

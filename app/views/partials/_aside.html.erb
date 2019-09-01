@@ -12,6 +12,20 @@
 
   <div class="upcoming-bills">
     <h4>Upcoming bills</h4>
-
+    <div class="bill-content">
+      <%# @calendar_event.inspect %>
+      <%  @upcoming_events.first(4).each do |event| %>
+        <%# next unless (index <= 3) %>
+        <div class="bill">
+          <div class="bill-icon">
+            <span class="<%= event.icon %>"></span>
+          </div>
+          <div class="bill-name">
+            <strong><%= event.name %></strong>
+            <p><%= event.start_time.strftime("%e %b.") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </aside>
