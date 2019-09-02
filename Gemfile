@@ -62,3 +62,6 @@ gem 'splitwise'
 
 # https://github.com/excid3/simple_calendar
 gem 'simple_calendar', '~> 2.0'
+
+# https://github.com/mkhairi/jquery-datatables
+gem 'jquery-datatables'

@@ -1,10 +1,9 @@
 <h1>Import</h1>
-<form class="form" action="/expenses/import" method="POST" enctype="multipart/form-data">
+<form class="form" action="/incomes/import" method="POST" enctype="multipart/form-data">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
       <div class="form-group">
         <%= label_tag(:owner,  raw("Rapport de dépenses&nbsp;:")) %>
-        <%# text_field_tag(:owner) %>
         <%= select_tag :owner, raw('<option value="Mathilde">Mathilde</option><option value="Virgile">Virgile</option>'), class: 'form-control' %>
       </div>
     </div>
@@ -18,8 +17,7 @@
   </div>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <input type="submit" class="btn btn-primary">
-  <%= link_to 'Retour', expenses_path, class: 'btn btn-danger' %>
+  <%= link_to 'Retour', incomes_path, class: 'btn btn-danger' %>
 </form>
 
-<%# render 'form', expense: @expense %>
 

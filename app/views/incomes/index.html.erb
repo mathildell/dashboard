@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Incomes<%= (@owner.present?) ? ' ('+@owner.name+')' : '' %></h1>
+<% if @owner.present? %>
+  <%= link_to 'Toutes', incomes_path, class: 'btn btn-info' %>
+<% end %>
+<%= link_to 'Mathilde', '/incomes?person=mathilde' , class: 'btn btn-info' %>
+<%= link_to 'Virgile', '/incomes?person=virgile' , class: 'btn btn-info' %>
+<%= link_to 'New', new_income_path, class: 'btn btn-primary' %>
+<%= link_to 'Import', '/incomes/import', class: 'btn btn-primary' %>
+
+<table id="incomes_table">
+  <thead>
+  <tr>
+    <th>Origin</th>
+    <th>Title</th>
+    <th>Amount</th>
+    <th>Date</th>
+    <th style="width:70px;">Owner</th>
+    <th style="width:20px;">&nbsp;</th>
+    <th style="width:20px;">&nbsp;</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @incomes.each do |income| %>
+    <% (@owner.present?) ? person = @owner : person =  Person.find(income.owner)%>
+    <tr>
+      <td><%= income.origin %></td>
+      <td><%= income.title %></td>
+      <td><%= income.amount %></td>
+      <td data-sort="<%= income.date %>">
+        <%= income.date.strftime("%e %b.") %>
+        <% if income.date.year < Date.current.year %>
+          (<%= income.date.year %>)
+        <% end %>
+
+      </td>
+      <td>
+        <%= image_tag person.photo %>
+      </td>
+      <td>
+        <%= link_to '<span class="icon-edit"></span>'.html_safe, edit_income_path(income) %>
+      </td>
+      <td>
+        <%= link_to '<span class="icon-trash"></span>'.html_safe, income, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%# link_to 'New Expense', new_expense_path %>
+
+<%# link_to '<span class="icon-eye-outline"></span>'.html_safe, expense %>
+<%# link_to '<span class="icon-edit"></span>'.html_safe, edit_expense_path(expense) %>

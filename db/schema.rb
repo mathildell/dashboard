@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190901170905) do
+ActiveRecord::Schema.define(version: 20190902165916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,34 @@ ActiveRecord::Schema.define(version: 20190901170905) do
     t.datetime "updated_at",   null: false
     t.boolean  "is_splitwise"
     t.string   "owner"
+  end
+
+  create_table "homes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "photos"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.string   "origin"
+    t.string   "owner"
+    t.string   "title"
+    t.float    "amount"
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string   "name"
+    t.string   "photo"
+    t.date     "birthday"
+    t.integer  "home_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["home_id"], name: "index_people_on_home_id", using: :btree
   end
 
 end

@@ -1,8 +1,6 @@
 /*
+ *= require common.scss
  * require_tree .
  * require_self
+@import 'common.scss';
  */
-
-@import '_common.scss';
-@import '_dashboard.scss';
-@import '_expenses.scss';

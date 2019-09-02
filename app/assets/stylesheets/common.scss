@@ -1,0 +1,76 @@
+
+/* Vendor */
+@import 'vendor/bootstrap-reboot';
+@import 'vendor/bootstrap';
+@import 'vendor/bootstrap-grid';
+@import 'vendor/datatables';
+
+/* Helpers */
+@import 'mixins.scss';
+@import 'vars';
+
+@import 'vendor/fontello.scss';
+@include font-face($icon-font, '../fonts/fontello/');
+
+/* Partials */
+@import 'partials/header.scss';
+@import 'partials/nav.scss';
+@import 'partials/aside.scss';
+
+
+/* Pages */
+@import 'dashboard.scss';
+@import 'expenses.scss';
+
+
+* {
+  margin: 0;
+  padding: 0;
+  //box-sizing: border-box;
+}
+
+a {
+  transition-duration: 0.3s;
+  text-decoration: none !important;
+}
+
+main.main-content {
+  margin-left: 180px;
+  margin-top: 100px;
+  margin-right: calc(20% + 50px);
+}
+
+
+.dataTables_info {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: $soft-grey;
+}
+.dataTable {
+  //th, td { }
+  width: 100%;
+  table-layout: fixed;
+  font-size: 13px;
+  thead th {
+    padding:10px 30px 10px 0px;
+    border-bottom: 1px solid $purple;
+  }
+  tbody td {
+    padding:5px 10px 5px 0px;
+    &:first-child { font-weight:bold; }
+  }
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    object-fit: cover;
+  }
+}
+#expenses_table, #incomes_table {
+  img {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

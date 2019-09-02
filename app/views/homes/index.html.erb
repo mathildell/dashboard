@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Homes</h1>
+<%= link_to 'People', people_path, class: 'btn btn-primary' %>
+
+<table id="homes_table">
+  <thead>
+  <tr>
+    <th>Photo</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>People</th>
+    <th style="width:20px;">&nbsp;</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @homes.each do |home| %>
+    <tr>
+      <td><%= image_tag home.photos %></td>
+      <td><%= home.name %></td>
+      <td><%= home.address %></td>
+      <td>
+        <% people = Person.where(home_id: home.id) %>
+        <% if people.count > 0 %>
+            <% people.each do |person| %>
+                <%= image_tag person.photo, style: 'width: 30px; height: 30px;' %>
+                <%= person.name %>
+            <br>
+            <% end %>
+        <% end %>
+      </td>
+      <td>        &nbsp;
+        <%= link_to '<span class="icon-trash"></span>'.html_safe, home, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%# link_to 'New Expense', new_expense_path %>
+
+<%# link_to '<span class="icon-eye-outline"></span>'.html_safe, expense %>
+<%# link_to '<span class="icon-edit"></span>'.html_safe, edit_expense_path(expense) %>

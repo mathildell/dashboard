@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>People</h1>
+<%= link_to 'Homes', homes_path, class: 'btn btn-primary' %>
+<table id="people_table">
+  <thead>
+  <tr>
+    <th>Photo</th>
+    <th>Name</th>
+    <th>Birthday</th>
+    <th>Home</th>
+    <th>Incomes</th>
+    <th>Expenses</th>
+    <th style="width:20px;">&nbsp;</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @people.each do |person| %>
+    <tr>
+      <td><%= image_tag person.photo %></td>
+      <td><%= person.name %></td>
+      <td><%= person.birthday %></td>
+      <td><%= Home.find(person.home_id).name %></td>
+      <td><%= link_to Income.where(owner: person.id).count, '/incomes?person='+person.name %></td>
+      <td><%= link_to Expense.where(owner: person.id).count, '/expenses?person='+person.name %></td>
+      <td>
+        &nbsp;
+        <%= link_to '<span class="icon-trash"></span>'.html_safe, person, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%# link_to 'New Expense', new_expense_path %>
+
+<%# link_to '<span class="icon-eye-outline"></span>'.html_safe, expense %>
+<%# link_to '<span class="icon-edit"></span>'.html_safe, edit_expense_path(expense) %>

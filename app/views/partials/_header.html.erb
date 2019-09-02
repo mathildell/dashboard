@@ -2,15 +2,19 @@
   <div class="side-search">
     &nbsp;
   </div>
-  <h1>dashboard<span>project</span></h1>
+  <h1>
+    <%= link_to 'dashboard<span>project</span>'.html_safe, dashboard_index_url %>
+  </h1>
   <div class="side-navigation">
     <div class="house-project">
-      <%= image_tag "family.jpg" %>
-      <span>8429<br>CHÉNIER</span>
+      <%= link_to(image_tag(@current_home.photos), homes_path) %>
+      <span><%= @current_home.name.upcase %></span>
     </div>
-    <div class="switch-dashboard-layout">
-      <a href="#" class="icon-th-large current"></a>
-      <a href="#" class="icon-th-list"></a>
-    </div>
+    <% if controller?("dashboard") %>
+      <div class="switch-dashboard-layout">
+        <a href="#" class="icon-th-large current"></a>
+        <a href="#" class="icon-th-list"></a>
+      </div>
+    <% end %>
   </div>
 </header>

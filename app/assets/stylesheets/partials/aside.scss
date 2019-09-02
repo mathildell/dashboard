@@ -4,7 +4,8 @@
   top: 50px;
   right: 0px;
   height: calc( 100% - 50px );
-  background-color: $purple;
+  #background-color: $purple;
+  background: linear-gradient($purple, darken($purple, 25%));
   border-top: 1px solid #fff;
   padding: 50px 20px 20px;
   width: 20%;

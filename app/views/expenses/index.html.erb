@@ -1,33 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Expenses</h1>
+<h1>Expenses<%= (@owner.present?) ? ' ('+@owner.name+')' : '' %></h1>
+<% if @owner.present? %>
+  <%= link_to 'Toutes', expenses_path, class: 'btn btn-info' %>
+<% end %>
+<%= link_to 'Mathilde', '/expenses?person=mathilde' , class: 'btn btn-info' %>
+<%= link_to 'Virgile', '/expenses?person=virgile' , class: 'btn btn-info' %>
+<%= link_to 'Import', new_expense_path, class: 'btn btn-primary' %>
 
-<table>
+<table id="expenses_table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
       <th>Amount</th>
       <th>Date</th>
-      <th colspan="3"></th>
+      <th style="width:70px;">Owner</th>
+      <th style="width:50px;">Splitwise</th>
+      <th style="width:20px;">&nbsp;</th>
     </tr>
   </thead>
 
   <tbody>
     <% @expenses.each do |expense| %>
+    <% (@owner.present?) ? person = @owner : person =  Person.find(expense.owner)%>
+
       <tr>
         <td><%= expense.title %></td>
         <td><%= expense.description %></td>
         <td><%= expense.amount %></td>
-        <td><%= expense.date %></td>
-        <td><%= link_to 'Show', expense %></td>
-        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
-        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td data-sort="<%= expense.date %>">
+          <%= expense.date.strftime("%e %b.") %>
+          <% if expense.date.year < Date.current.year %>
+            (<%= expense.date.year %>)
+          <% end %>
+        </td>
+        <td>
+          <%= image_tag person.photo %>
+        </td>
+        <td><%= (expense.is_splitwise) ? 'Yes' : 'No' %></td>
+        <td>
+          &nbsp;
+          <%= link_to '<span class="icon-trash"></span>'.html_safe, expense, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Expense', new_expense_path %>
+<%# link_to 'New Expense', new_expense_path %>
+
+<%# link_to '<span class="icon-eye-outline"></span>'.html_safe, expense %>
+<%# link_to '<span class="icon-edit"></span>'.html_safe, edit_expense_path(expense) %>
